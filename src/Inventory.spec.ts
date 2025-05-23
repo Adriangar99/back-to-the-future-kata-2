@@ -33,9 +33,22 @@ describe("Inventory", () => {
   it("can store more than one item in the same day", () => {
     const today = new Date()
     const inventory = new Inventory()
+
     inventory.add(today, "🍌")
     inventory.add(today, "🍌")
 
     expect(inventory.project(today)).toEqual(["🍌", "🍌"])
+  })
+
+  it("can remove a previously stored item", () => {
+    const today = new Date()
+    const inventory = new Inventory()
+    const tomorrow = new Date()
+    tomorrow.setDate(today.getDate() + 1)
+    inventory.add(today, "🍌")
+
+    inventory.remove(tomorrow, "🍌")
+
+    expect(inventory.project(tomorrow)).toEqual([])
   })
 })

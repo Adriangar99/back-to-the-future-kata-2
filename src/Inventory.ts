@@ -8,6 +8,10 @@ export class Inventory {
   add(date: Date, product: String): void {
     this.items.push(new InventoryItem(product, date))
   }
+
+  remove(date: Date, product: String): void {
+    this.items = this.items.filter((item) => item.product !== product)
+  }
 }
 
 export class InventoryItem {
