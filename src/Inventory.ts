@@ -1,11 +1,21 @@
 export class Inventory {
-  items: String[] = []
+  items: InventoryItem[] = []
 
   project(date: Date): String[] {
-    return this.items
+    return this.items.map((item) => item.product)
   }
 
-  add(date: Date, item: String): void {
-    this.items.push(item)
+  add(date: Date, product: String): void {
+    this.items.push(new InventoryItem(product, date))
+  }
+}
+
+export class InventoryItem {
+  product: String
+  addedAt: Date
+
+  constructor(product: String, addedAt: Date) {
+    this.product = product
+    this.addedAt = addedAt
   }
 }
