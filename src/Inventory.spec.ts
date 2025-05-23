@@ -29,4 +29,13 @@ describe("Inventory", () => {
 
     expect(inventory.project(yesterday)).toEqual([])
   })
+
+  it("can store more than one item in the same day", () => {
+    const today = new Date()
+    const inventory = new Inventory()
+    inventory.add(today, "🍌")
+    inventory.add(today, "🍌")
+
+    expect(inventory.project(today)).toEqual(["🍌", "🍌"])
+  })
 })
