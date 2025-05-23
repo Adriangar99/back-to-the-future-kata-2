@@ -17,4 +17,16 @@ describe("Inventory", () => {
 
     expect(inventory.project(today)).toEqual(["🍌"])
   })
+
+  it("should not return any item when the consulted date has no items added in that date", () => {
+    const today = new Date()
+    const yesterday = new Date()
+    yesterday.setDate(today.getDate() - 1)
+
+    const inventory = new Inventory()
+
+    inventory.add(today, "🍌")
+
+    expect(inventory.project(yesterday)).toEqual([])
+  })
 })

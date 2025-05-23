@@ -2,7 +2,7 @@ export class Inventory {
   items: InventoryItem[] = []
 
   project(date: Date): String[] {
-    return this.items.map((item) => item.product)
+    return this.items.filter((item) => item.addedAt <= date).map((item) => item.product)
   }
 
   add(date: Date, product: String): void {
